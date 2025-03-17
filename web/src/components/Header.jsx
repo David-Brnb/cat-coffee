@@ -91,7 +91,7 @@ const Header = () => {
               href="/login"
               className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
             >
-              New Account
+              unsigned
             </a>
             <Button className="hidden lg:flex" href="/login">
               Sign In
