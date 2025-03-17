@@ -63,14 +63,23 @@ def obtener_imagen_gato(id: int):
     cursor = conn.cursor()
     cursor.execute("SELECT ruta_foto FROM gatos WHERE id=?", (id,))
     gato = cursor.fetchone()
-    
     if gato:
         return {"ruta_foto": gato["ruta_foto"]}
     
     raise HTTPException(status_code=404, detail="Imagen no encontrada")
 
-# Endpoint para obtener textos para el frontend
-@app.get("/textos")
-def obtener_textos():
-    textos = ["Bienvenido al Cat Café", "Disfruta tu visita con nuestros adorables felinos"]
-    return textos
+
+@app.get("/imagen_platillo/{id}")
+def obtener_imagen_platillo(id: int):
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT ruta_foto FROM platillos WHERE id=?", (id,))
+    platillo = cursor.fetchone()
+    
+    conn.close()
+
+    if platillo:
+        return {"ruta_foto": platillo[0]}  # Accede correctamente al valor
+
+    raise HTTPException(status_code=404, detail="Imagen no encontrada")
