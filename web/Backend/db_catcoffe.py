@@ -55,11 +55,11 @@ def create_database():
 
 
     gatos = [
-        ('Michi', 'michi.jpg', 'Aunque no lo creas, sí, así se llama, digamos que el dueño del lugar no fue muy creativo al nombrarlo, ya que cuando este amigo llego con nosotros, este establecimiento apenas estaba empezando, es el abuelito que todos quieren.'),
-        ('Centauri', 'flopa.jpg', 'Técnicamente, Centauri no es un gato, pero aun así lo queremos y es muy tranquilo.'),
-        ('Goobert', 'goob.jpg', 'Simplemente Goobert, existe y ya, ningun pensamiento pasa por su cabeza (aunque creemos que es capaz de colapsar el gobierno).'),
-        ('Andromeda', 'andromeda.jpg', 'Andrómeda está siempre muy cerca de ti, es simplemente alguien curiosa a sus 2 años que puede pasar un tiempo divertido y lleno de actividades .'),
-        ('Milky-Way', 'milky.jpg', 'Milky-way, la verdad es que es tu mejor compañero si lo que te encanta destruir cosas, según nuestros contadores ya debe 2000 en gastos de juguetes.')
+        ('Michi', 'https://t4.ftcdn.net/jpg/00/91/65/23/360_F_91652321_TPJIx4LRRlp3rMLdzLDF1xlRb2ghjSd2.jpg', 'Aunque no lo creas, sí, así se llama, digamos que el dueño del lugar no fue muy creativo al nombrarlo, ya que cuando este amigo llego con nosotros, este establecimiento apenas estaba empezando, es el abuelito que todos quieren.'),
+        ('Centauri', 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/75/d9/e8/this-is-johnny-a-sweet.jpg?w=1200&h=-1&s=1', 'Técnicamente, Centauri no es un gato, pero aun así lo queremos y es muy tranquilo.'),
+        ('Goobert', 'https://t3.ftcdn.net/jpg/07/06/89/92/360_F_706899227_XaK3lLcx3moA4jQXhNe4ubCTlRyUJoT4.jpg', 'Simplemente Goobert, existe y ya, ningun pensamiento pasa por su cabeza (aunque creemos que es capaz de colapsar el gobierno).'),
+        ('Andromeda', 'https://i.cbc.ca/1.3226364.1442241715!/fileImage/httpImage/image.JPG_gen/derivatives/original_620/cat-cafe.JPG', 'Andrómeda está siempre muy cerca de ti, es simplemente alguien curiosa a sus 2 años que puede pasar un tiempo divertido y lleno de actividades .'),
+        ('Milky-Way', 'https://media.istockphoto.com/id/1164498663/photo/autumn-cozy-composition-with-ginger-cat.jpg?s=612x612&w=0&k=20&c=gs7ofZZsvzF2_CLGKKKI2GPWqOKfembeesD-JG8KRew=', 'Milky-way, la verdad es que es tu mejor compañero si lo que te encanta destruir cosas, según nuestros contadores ya debe 2000 en gastos de juguetes.')
     ]
 
     cursor.executemany('INSERT OR IGNORE INTO gatos (nombre, ruta_foto, descripcion) VALUES (?, ?, ?)', gatos)

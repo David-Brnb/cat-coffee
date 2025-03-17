@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 # Ruta correcta de la base de datos
-DB_PATH = "C:/Users/anake/cat-coffee/web/Backend/cat_cafe.db"
+DB_PATH = "cat_cafe.db"
 
 # Modelo de datos para el login
 class LoginRequest(BaseModel):
@@ -24,6 +24,15 @@ def get_db():
 # Función para encriptar contraseñas con bcrypt
 def hash_password(password: str) -> str:
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+# Configuración de CORS para aceptar todos los orígenes
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Aceptar todos los orígenes
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos los métodos HTTP (GET, POST, etc.)
+    allow_headers=["*"],  # Permitir todos los encabezados
+)
 
 # Endpoint para validar usuario
 @app.post("/login")

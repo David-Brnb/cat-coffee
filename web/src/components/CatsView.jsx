@@ -11,22 +11,8 @@ const CatsView = () => {
     fetch("http://127.0.0.1:8000/gatos")
       .then((response) => response.json())
       .then((data) => {
-        const catsWithImages = data.map((cat) => {
-          return fetch(`http://127.0.0.1:8000/imagen_gato/${cat.id}`)
-            .then((res) => res.json())
-            .then((imageData) => ({
-              ...cat,
-              imageUrl: `http://127.0.0.1:8000/${imageData.ruta_foto}`,
-            }))
-            .catch((error) => {
-              console.error("Error al obtener la imagen:", error);
-              return { ...cat, imageUrl: null };
-            });
-        });
-        Promise.all(catsWithImages).then((catsWithImagesData) => {
-          setCats(catsWithImagesData);
-          setLoading(false); 
-        });
+        setCats(data); 
+        setLoading(false); 
       })
       .catch((error) => {
         console.error("Error", error);
@@ -37,6 +23,8 @@ const CatsView = () => {
   if (loading) {
     return <div>Cargando...</div>;
   }
+
+  console.log(cats);
 
   return (
     <Section id="features">
@@ -52,7 +40,7 @@ const CatsView = () => {
                 key={cat.id}
                 name={cat.nombre}
                 desc={cat.descripcion}
-                image={cat.imageUrl} 
+                image={cat.ruta_foto} 
               />
             ))
           ) : (
