@@ -13,7 +13,7 @@ DB_PATH = "cat_cafe.db"
 # Modelo de datos para el login
 class LoginRequest(BaseModel):
     usuario: str
-    contrasena: str
+    contraseña: str
 
 class RegisterRequest(BaseModel):
     usuario: str
