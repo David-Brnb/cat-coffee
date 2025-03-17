@@ -23,8 +23,9 @@ const Hero = () => {
       <div className="container relative" ref={parallaxRef}>
         <div className="relative z-1 max-w-[62rem] mx-auto text-center mb-[4rem] md:mb-20 lg:mb:[6rem]">
           <h1 className="h1 mb-6">
+            Dejate llevar por una cafetería {""}
             <span className="inline-block relative">
-              Brainwave{" "}
+              galáctica{" "}
               <img
                 src={curve}
                 className="absolute top-full left-0 w-full xl:-mt-2"
@@ -37,7 +38,7 @@ const Hero = () => {
           <p className="body-1 max-w-3xl mx-auto mb-6 text-n-2 ld:mb-8">
         
           </p>
-          <Button href="/pricing" white>
+          <Button href="/menu" white>
             Get Started
           </Button>
         </div>
@@ -59,10 +60,6 @@ const Hero = () => {
                 <ScrollParallax isAbsolutelyPositioned>
                   <ul className="hidden absolute -left-[5.5rem] bottom-[7.5rem] px-1 py-1 bg-n-9/40 backdrop-blur border border-n-1/10 rounded-2xl xl:flex">
                     {heroIcons.map((icon, index) => (
-                      // console.log("xd")
-                      // <Button>
-                      //   <img src={icon} width={24} height={25} alt={icon} />
-                      // </Button>
                       <li className="p-5" key={index}>
                         <a href="/">
                           <img src={icon} width={24} height={25} alt={icon} />
@@ -72,7 +69,7 @@ const Hero = () => {
                   </ul>
                   <Notification
                     className="hidden absolute -right-[5.5rem] bottom-[11rem] w-[18rem] xl:flex"
-                    title="Code generation"
+                    title="Un gatito te espera"
                   ></Notification>
                 </ScrollParallax>
               </div>
