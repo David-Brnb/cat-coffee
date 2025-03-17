@@ -50,10 +50,10 @@ def validar_usuario(data: LoginRequest):
     cursor.execute("SELECT contraseña FROM usuarios WHERE usuario=?", (data.usuario,))
     user = cursor.fetchone()
 
-    print(hash_password(data.contraseña))
+    print(data.contraseña)
     print(user["contraseña"])
 
-    if user and hash_password(data.contraseña) == user["contraseña"]:
+    if user and data.contraseña == user["contraseña"]:
         return {"message": "Login exitoso"}
     
     raise HTTPException(status_code=401, detail="Credenciales incorrectas")
@@ -106,7 +106,7 @@ def registrar_usuario(data: RegisterRequest):
         raise HTTPException(status_code=400, detail="El usuario ya existe")
 
     # Hashear la contraseña
-    hashed_password = hash_password(data.contraseña)
+    hashed_password = data.contraseña
     print(hashed_password)
 
     # Insertar nuevo usuario

@@ -7,21 +7,49 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+
     if (username.trim() === "" || password.trim() === "") {
-      alert("Por favor, ingresa un usuario y una contraseña");
-      return;
+        alert("Por favor, ingresa un usuario y una contraseña");
+        return;
     }
 
-    const user = { name: username };
-    localStorage.setItem("user", JSON.stringify(user));
-    navigate("/");
 
-    setTimeout(() => {
-        window.location.reload();
-    }, 100);
+    console.log(username, password);
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                usuario: username,
+                contraseña: password,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            localStorage.setItem("user", JSON.stringify({ name: username }));
+
+            navigate("/");
+
+            // Recargar para reflejar cambios
+            setTimeout(() => {
+                window.location.reload();
+            }, 100);
+        } else {
+            alert(data.detail); // Mostrar mensaje de error
+        }
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+        alert("Error al conectar con el servidor");
+    }
   };
+
 
   return (
     <Section>
