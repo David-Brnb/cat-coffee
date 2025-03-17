@@ -3,12 +3,12 @@ from pydantic import BaseModel
 import sqlite3
 import bcrypt
 import os
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
 # Ruta correcta de la base de datos
-DB_PATH = "C:/Users/Alan2/OneDrive/Documentos/GitHub/cat-coffee/web/Backend/cat_cafe.db"
-
+DB_PATH = "C:/Users/anake/cat-coffee/web/Backend/cat_cafe.db"
 
 # Modelo de datos para el login
 class LoginRequest(BaseModel):
