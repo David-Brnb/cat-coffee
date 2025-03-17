@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Menu from "./components/Menu";
 import CatsView from "./components/CatsView";
 import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/menu" element={<Menu />} />
           <Route path="/cats" element={<CatsView />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </div>
       <ButtonGradient />

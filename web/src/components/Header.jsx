@@ -88,10 +88,10 @@ const Header = () => {
         ) : (
           <>
             <a
-              href="/login"
+              href="/signup"
               className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
             >
-              unsigned
+              Sign Up
             </a>
             <Button className="hidden lg:flex" href="/login">
               Sign In
