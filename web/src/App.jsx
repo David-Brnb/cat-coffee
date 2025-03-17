@@ -12,6 +12,7 @@ const App = () => {
       <Header />
       <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
         <Routes>
+          <Route path="/" element={<Hero />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/cats" element={<CatsView />} />
           <Route path="/login" element={<Login />} />
