@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { brainwave } from "../assets";
 import { navigation } from "../constants/index";
@@ -11,8 +10,15 @@ import { HamburgerMenu } from "./design/Header";
 
 const Header = () => {
   const pathname = useLocation();
-
   const [OpenNavigation, setOpenNavigation] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const toggleNavigation = () => {
     if (OpenNavigation) {
@@ -26,9 +32,13 @@ const Header = () => {
 
   const handleClick = () => {
     if (!OpenNavigation) return;
-
     setOpenNavigation(false);
     enablePageScroll();
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
   };
 
   return (
@@ -38,8 +48,8 @@ const Header = () => {
       }`}
     >
       <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
-        <a className="block w-[12rem] xl:mr-8" href="#hero">
-          <img src={brainwave} alt="Bainwave" width={190} height={40} />
+        <a className="block w-[12rem] xl:mr-8" href="/">
+          <img src={brainwave} alt="Brainwave" width={190} height={40} />
         </a>
 
         <nav
@@ -47,7 +57,7 @@ const Header = () => {
             OpenNavigation ? "flex" : "hidden"
           } fixed top-[5rem] left-0 right-0 bottom-0 bg-n-8 lg:static lg:flex lg:mx-auto lg:bg-transparent`}
         >
-          <div className="relative z-2  flex flex-col items-center justify-center m-auto lg:flex-row">
+          <div className="relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row">
             {navigation.map((item) => (
               <a
                 key={item.id}
@@ -67,15 +77,27 @@ const Header = () => {
           </div>
           <HamburgerMenu />
         </nav>
-        <a
-          href="#signup"
-          className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
-        >
-          New Account
-        </a>
-        <Button className="hidden lg:flex" href="#login">
-          Sign In
-        </Button>
+
+        {user ? (
+          <>
+            <span className="hidden mr-8 text-n-1 lg:block">{user.name}</span>
+            <Button className="hidden lg:flex" onClick={handleLogout}>
+              Sign Out
+            </Button>
+          </>
+        ) : (
+          <>
+            <a
+              href="/login"
+              className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
+            >
+              New Account
+            </a>
+            <Button className="hidden lg:flex" href="/login">
+              Sign In
+            </Button>
+          </>
+        )}
 
         <Button
           className="ml-auto lg:hidden"
